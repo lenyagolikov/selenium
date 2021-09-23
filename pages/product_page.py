@@ -6,7 +6,7 @@ class ProductPage(BasePage):
     def press_button_add_to_basket(self):
         button = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         button.click()
-        self.solve_quiz_and_get_code()
+        # self.solve_quiz_and_get_code()
 
     @staticmethod
     def should_be_correct_product_name_after_adding(product_name, product_name_in_basket):
@@ -15,6 +15,14 @@ class ProductPage(BasePage):
     @staticmethod
     def should_be_correct_product_price_after_adding(product_price, product_price_in_basket):
         assert product_price == product_price_in_basket, 'Incorrect product price in basket'
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(
+            *ProductPageLocators.SUCCESS_MESSAGE), 'Success message is presented, but should not be'
+
+    def should_not_disappeared(self):
+        assert self.is_disappeared(
+            *ProductPageLocators.SUCCESS_MESSAGE), 'Success message is not disappeared, but should be'
 
     def get_product_name(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), 'Product name is not present'
