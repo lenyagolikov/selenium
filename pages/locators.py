@@ -8,8 +8,8 @@ class BasePageLocators:
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 
-class CartPageLocators:
-    TEXT_CART_IS_EMPTY = (By.CSS_SELECTOR, '#content_inner p')
+class BasketPageLocators:
+    TEXT_BASKET_IS_EMPTY = (By.CSS_SELECTOR, '#content_inner p')
 
 
 class MainPageLocators:

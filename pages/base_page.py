@@ -1,5 +1,4 @@
 import math
-
 from selenium.common.exceptions import (
     NoAlertPresentException, NoSuchElementException, TimeoutException
 )
@@ -28,7 +27,7 @@ class BasePage:
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON)
 
-    def go_to_cart(self):
+    def go_to_basket(self):
         button = self.browser.find_element(*BasePageLocators.BUTTON_VIEW_CART)
         button.click()
 
@@ -55,15 +54,18 @@ class BasePage:
         return True
 
     def solve_quiz_and_get_code(self):
-        alert = self.browser.switch_to.alert
-        x = alert.text.split(" ")[2]
-        answer = str(math.log(abs((12 * math.sin(float(x))))))
-        alert.send_keys(answer)
-        alert.accept()
         try:
             alert = self.browser.switch_to.alert
-            alert_text = alert.text
-            print(f"Your code: {alert_text}")
+            x = alert.text.split(" ")[2]
+            answer = str(math.log(abs((12 * math.sin(float(x))))))
+            alert.send_keys(answer)
             alert.accept()
-        except NoAlertPresentException:
-            print("No second alert presented")
+            try:
+                alert = self.browser.switch_to.alert
+                alert_text = alert.text
+                print(f"Your code: {alert_text}")
+                alert.accept()
+            except NoAlertPresentException:
+                print("No second alert presented")
+        except:
+            pass
