@@ -6,7 +6,7 @@ class ProductPage(BasePage):
     def press_button_add_to_basket(self):
         button = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         button.click()
-        self.solve_quiz_and_get_code()
+        # self.solve_quiz_and_get_code()
 
     @staticmethod
     def should_be_correct_product_name_after_adding(product_name, product_name_in_basket):

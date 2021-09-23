@@ -25,6 +25,9 @@ class BasePage:
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
 
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON)
+
     def go_to_cart(self):
         button = self.browser.find_element(*BasePageLocators.BUTTON_VIEW_CART)
         button.click()
